@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://drmj787juryvx"]
+
+[ext_resource type="Script" uid="uid://bkjg3vrqgw7rk" path="res://game_root.gd" id="1_bxsma"]
+[ext_resource type="PackedScene" uid="uid://dylreq4m0wl42" path="res://world/map.tscn" id="1_pjpa4"]
+[ext_resource type="PackedScene" uid="uid://b8g2jnwrygsem" path="res://character/main_character.tscn" id="2_bxsma"]
+[ext_resource type="PackedScene" uid="uid://b3bxaqiicaau0" path="res://hud/hud.tscn" id="2_lkrbl"]
+
+[node name="GameRoot" type="Node" unique_id=784994557]
+script = ExtResource("1_bxsma")
+
+[node name="Map" parent="." unique_id=1177974816 instance=ExtResource("1_pjpa4")]
+
+[node name="MainCharacter" parent="." unique_id=21980762 instance=ExtResource("2_bxsma")]
+position = Vector2(144, 93)
+speed = 64
+
+[node name="Camera2D" type="Camera2D" parent="MainCharacter" unique_id=24690341]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 512
+limit_bottom = 320
+editor_draw_limits = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=111559750]
+
+[node name="Hud" parent="CanvasLayer" unique_id=1552695902 instance=ExtResource("2_lkrbl")]

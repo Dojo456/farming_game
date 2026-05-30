@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://b3bxaqiicaau0"]
+
+[ext_resource type="Script" uid="uid://c7u8sr34ray2v" path="res://hud/hud.gd" id="1_2gk58"]
+[ext_resource type="Texture2D" uid="uid://e8jisysjp7ob" path="res://Sprout Lands - Sprites - Basic pack/Objects/Basic_Plants.png" id="2_318vg"]
+[ext_resource type="PackedScene" uid="uid://q1lbfo5276sp" path="res://hud/inventory_row.tscn" id="3_318vg"]
+[ext_resource type="Script" uid="uid://chbqs17hxn6r4" path="res://world/items/item.gd" id="4_svhta"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gk58"]
+bg_color = Color(0.9072878, 0.8226904, 0.6088919, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.97060233, 0.97060245, 0.97060233, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8tcp"]
+atlas = ExtResource("2_318vg")
+region = Rect2(80, 0, 16, 16)
+
+[node name="Hud" type="Control" unique_id=1552695902]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2gk58")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=143878649]
+layout_mode = 1
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 85.0
+offset_bottom = 54.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2gk58")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=973077987]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=2124341749]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=915564084]
+layout_mode = 2
+texture = SubResource("AtlasTexture_w8tcp")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ScoreLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1382661305]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "0x"
+
+[node name="InventoryBar" parent="." unique_id=684675630 instance=ExtResource("3_318vg")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -40.0
+offset_right = 160.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+_items = Array[ExtResource("4_svhta")]([])

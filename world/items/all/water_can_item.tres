@@ -1,0 +1,112 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://co60tsl20gfxl"]
+
+[ext_resource type="Texture2D" uid="uid://gupfunnxc85o" path="res://Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Actions.png" id="1_2xvhb"]
+[ext_resource type="Script" uid="uid://chbqs17hxn6r4" path="res://world/items/item.gd" id="1_h8k30"]
+[ext_resource type="Texture2D" uid="uid://k5ds7b5w0kxw" path="res://Sprout Lands - Sprites - Basic pack/Characters/Tools.png" id="2_m14vt"]
+[ext_resource type="Texture2D" uid="uid://couxnne5ig3o4" path="res://Sprout Lands - Sprites - Basic pack/Objects/Basic_tools_and_meterials.png" id="3_m14vt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm4fk"]
+atlas = ExtResource("1_2xvhb")
+region = Rect2(0, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv4no"]
+atlas = ExtResource("1_2xvhb")
+region = Rect2(48, 384, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g51ho"]
+atlas = ExtResource("1_2xvhb")
+region = Rect2(0, 480, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvb05"]
+atlas = ExtResource("1_2xvhb")
+region = Rect2(48, 480, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gle2"]
+atlas = ExtResource("1_2xvhb")
+region = Rect2(0, 528, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeo1o"]
+atlas = ExtResource("1_2xvhb")
+region = Rect2(48, 528, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfgdg"]
+atlas = ExtResource("1_2xvhb")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx8ta"]
+atlas = ExtResource("1_2xvhb")
+region = Rect2(48, 432, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtjll"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm4fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv4no")
+}],
+"loop": true,
+"name": &"d",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g51ho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvb05")
+}],
+"loop": true,
+"name": &"l",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gle2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeo1o")
+}],
+"loop": true,
+"name": &"r",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfgdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx8ta")
+}],
+"loop": true,
+"name": &"u",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8k30"]
+atlas = ExtResource("2_m14vt")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m14vt"]
+atlas = ExtResource("2_m14vt")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xvhb"]
+atlas = ExtResource("3_m14vt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6vvo"]
+atlas = ExtResource("2_m14vt")
+region = Rect2(64, 16, 16, 16)
+
+[resource]
+script = ExtResource("1_h8k30")
+name = "Watering Can"
+sprite = SubResource("AtlasTexture_2xvhb")
+action = 3
+left_sprite = SubResource("AtlasTexture_m14vt")
+down_sprite = SubResource("AtlasTexture_h8k30")
+up_sprite = SubResource("AtlasTexture_o6vvo")
+animations = SubResource("SpriteFrames_xtjll")
+metadata/_custom_type_script = "uid://chbqs17hxn6r4"
