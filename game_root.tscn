@@ -10,6 +10,14 @@ script = ExtResource("1_bxsma")
 
 [node name="Map" parent="." unique_id=1177974816 instance=ExtResource("1_pjpa4")]
 
+[node name="CursorIndicator" type="ColorRect" parent="Map" unique_id=155333788]
+visible = false
+offset_left = 136.0
+offset_top = 79.0
+offset_right = 152.0
+offset_bottom = 95.0
+color = Color(0, 0, 1, 0.37254903)
+
 [node name="MainCharacter" parent="." unique_id=21980762 instance=ExtResource("2_bxsma")]
 position = Vector2(144, 93)
 speed = 64

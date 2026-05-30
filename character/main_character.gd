@@ -4,7 +4,6 @@ extends CharacterBody2D
 
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var body = $CharacterBody2D
 @onready var idle_timer: Timer = $Timer
 @onready var item_sprite: Sprite2D = $AnimatedSprite2D/ItemSprite
 
@@ -20,7 +19,8 @@ var holding_item: Item:
 		return GameState.active_item
 
 func show_holding_item():
-	if not self.holding_item:
+	# TODO: items will have a "show while holding" attribute to be added to replace the always true
+	if not self.holding_item or true:
 		return
 		
 	if self.idle:
@@ -57,21 +57,28 @@ func show_holding_item():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.show_holding_item()
+	pass
+	
+@onready var temp_animation_sprite: AnimatedSprite2D = $TempAnimationSprite2D
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Engine.is_editor_hint():
-		return
-	
-	var move_dir = Input.get_vector("move_l", "move_r", "move_u", "move_d")
-	
-	var moving = move_dir != Vector2.ZERO
-	
-	# Move and slide based on input dir
-	self.velocity = move_dir.normalized() * self.speed
-	self.move_and_slide()
+var showing_temp_animation = false
 
+func play_sprite_frame_once(sprite_frame: SpriteFrames, animation: String):
+	temp_animation_sprite.sprite_frames = sprite_frame
+	print(sprite_frame.get_animation_speed(animation))
+	sprite_frame.set_animation_loop(animation, false)
+	temp_animation_sprite.play(animation)
+	temp_animation_sprite.show()
+	sprite.hide()
+	showing_temp_animation = true
+	await temp_animation_sprite.animation_finished
+	
+func _on_temp_animation_sprite_2d_animation_finished() -> void:
+	temp_animation_sprite.hide()
+	sprite.show()
+	showing_temp_animation = false
+
+func show_character_animation(move_dir: Vector2):
 	# If is moving
 	if not move_dir.is_zero_approx():
 		# Set idle timer to 0
@@ -94,8 +101,25 @@ func _process(delta: float) -> void:
 			self.sprite.play()
 		else:
 			self.sprite.pause()
-				
-	# Update Item Display
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+		
+	if self.showing_temp_animation:
+		return
+	
+	var move_dir = Input.get_vector("move_l", "move_r", "move_u", "move_d")
+	
+	var moving = move_dir != Vector2.ZERO
+	
+	# Move and slide based on input dir
+	self.velocity = move_dir.normalized() * self.speed
+	self.move_and_slide()
+	
+	self.show_character_animation(move_dir)
+	
 	self.show_holding_item()
 
 func _on_timer_timeout() -> void:

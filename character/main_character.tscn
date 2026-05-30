@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://drp6iwijnwr8" path="res://character/main_character.gd" id="1_wmkwl"]
 [ext_resource type="Texture2D" uid="uid://fdhy3ikm65yu" path="res://Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="2_uvl38"]
-[ext_resource type="Texture2D" uid="uid://k5ds7b5w0kxw" path="res://Sprout Lands - Sprites - Basic pack/Characters/Tools.png" id="4_77ofe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2q423"]
 atlas = ExtResource("2_uvl38")
@@ -159,16 +158,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h8k30"]
-atlas = ExtResource("4_77ofe")
-region = Rect2(32, 16, 16, 16)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8013f"]
 size = Vector2(8, 8)
 
 [node name="MainCharacter" type="CharacterBody2D" unique_id=21980762]
 motion_mode = 1
 script = ExtResource("1_wmkwl")
+
+[node name="TempAnimationSprite2D" type="AnimatedSprite2D" parent="." unique_id=638981531]
+position = Vector2(0, -8)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1591005711]
 position = Vector2(0, -8)
@@ -177,7 +175,6 @@ animation = &"idle_d"
 
 [node name="ItemSprite" type="Sprite2D" parent="AnimatedSprite2D" unique_id=1423297301]
 position = Vector2(5, 7)
-texture = SubResource("AtlasTexture_h8k30")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=414799401]
 visible = false
@@ -187,4 +184,5 @@ shape = SubResource("RectangleShape2D_8013f")
 [node name="Timer" type="Timer" parent="." unique_id=340656663]
 one_shot = true
 
+[connection signal="animation_finished" from="TempAnimationSprite2D" to="." method="_on_temp_animation_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
