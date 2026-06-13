@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://b4d3nwvjx2iki"]
 
-[ext_resource type="Texture2D" uid="uid://k5ds7b5w0kxw" path="res://Sprout Lands - Sprites - Basic pack/Characters/Tools.png" id="1_da2tk"]
 [ext_resource type="Texture2D" uid="uid://gupfunnxc85o" path="res://Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Actions.png" id="1_nnqco"]
 [ext_resource type="Script" uid="uid://chbqs17hxn6r4" path="res://world/items/item.gd" id="2_vh6ww"]
 [ext_resource type="Texture2D" uid="uid://couxnne5ig3o4" path="res://Sprout Lands - Sprites - Basic pack/Objects/Basic_tools_and_meterials.png" id="3_vh6ww"]
@@ -84,14 +83,6 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nnqco"]
-atlas = ExtResource("1_da2tk")
-region = Rect2(0, 80, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wwxlg"]
-atlas = ExtResource("1_da2tk")
-region = Rect2(0, 80, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgyyp"]
 atlas = ExtResource("3_vh6ww")
 region = Rect2(32, 0, 16, 16)
@@ -101,7 +92,5 @@ script = ExtResource("2_vh6ww")
 name = "Hoe"
 sprite = SubResource("AtlasTexture_vgyyp")
 action = 1
-left_sprite = SubResource("AtlasTexture_wwxlg")
-down_sprite = SubResource("AtlasTexture_nnqco")
 animations = SubResource("SpriteFrames_5imgn")
 metadata/_custom_type_script = "uid://chbqs17hxn6r4"

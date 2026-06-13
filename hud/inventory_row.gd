@@ -10,11 +10,12 @@ var selected = 0
 func update():
 	_item_list.clear()
 	
-	for item in _items:		
+	for item in _items:
 		if item:
 			_item_list.add_item(item.name, item.sprite)
 	
-	_item_list.select(self.selected)
+	if _items.size() > 0:
+		_item_list.select(self.selected)
 
 func set_items(items: Array[Item]):
 	if items != _items:

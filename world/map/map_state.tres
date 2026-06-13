@@ -1,0 +1,6 @@
+[gd_resource type="Resource" format=3 uid="uid://cfnqvhpkvm8h6"]
+
+[ext_resource type="Script" uid="uid://c6ge0wrk45oqh" path="res://world/map/map_state.gd" id="1_jne6x"]
+
+[resource]
+script = ExtResource("1_jne6x")

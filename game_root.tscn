@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://drmj787juryvx"]
 
 [ext_resource type="Script" uid="uid://bkjg3vrqgw7rk" path="res://game_root.gd" id="1_bxsma"]
-[ext_resource type="PackedScene" uid="uid://dylreq4m0wl42" path="res://world/map.tscn" id="1_pjpa4"]
+[ext_resource type="PackedScene" uid="uid://dylreq4m0wl42" path="res://world/map/map.tscn" id="1_pjpa4"]
 [ext_resource type="PackedScene" uid="uid://b8g2jnwrygsem" path="res://character/main_character.tscn" id="2_bxsma"]
 [ext_resource type="PackedScene" uid="uid://b3bxaqiicaau0" path="res://hud/hud.tscn" id="2_lkrbl"]
 
-[node name="GameRoot" type="Node" unique_id=784994557]
+[node name="GameRoot" type="Node2D" unique_id=1368247433]
 script = ExtResource("1_bxsma")
 
 [node name="Map" parent="." unique_id=1177974816 instance=ExtResource("1_pjpa4")]
 
 [node name="CursorIndicator" type="ColorRect" parent="Map" unique_id=155333788]
-visible = false
 offset_left = 136.0
 offset_top = 79.0
 offset_right = 152.0
 offset_bottom = 95.0
+mouse_filter = 2
 color = Color(0, 0, 1, 0.37254903)
 
 [node name="MainCharacter" parent="." unique_id=21980762 instance=ExtResource("2_bxsma")]
@@ -33,3 +33,26 @@ editor_draw_limits = true
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=111559750]
 
 [node name="Hud" parent="CanvasLayer" unique_id=1552695902 instance=ExtResource("2_lkrbl")]
+mouse_filter = 2
+
+[node name="DebugHud" type="Control" parent="CanvasLayer" unique_id=272131236]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CharCoords" type="Label" parent="CanvasLayer/DebugHud" unique_id=379538102]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "0,0"

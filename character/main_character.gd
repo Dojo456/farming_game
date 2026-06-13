@@ -77,6 +77,26 @@ func _on_temp_animation_sprite_2d_animation_finished() -> void:
 	temp_animation_sprite.hide()
 	sprite.show()
 	showing_temp_animation = false
+	
+## Converts an 8 directional unit vector to a dir string: ["l", "r", "u", "d"]
+func get_dir_string_from_vector(vec: Vector2) -> String:
+	if vec.length() != 1:
+		vec = vec.normalized().round()
+	
+	var dirs = {
+		Vector2.UP: "u",
+		Vector2.DOWN: "d",
+		# All left facing, regardless of vert should be left
+		Vector2.LEFT: "l",
+		Vector2(-1, -1): "l",
+		Vector2(-1, 1): "l",
+		# Same for right
+		Vector2.RIGHT: "r",
+		Vector2(1, -1): "r",
+		Vector2(1, 1): "r",
+	}
+	
+	return dirs[vec]
 
 func show_character_animation(move_dir: Vector2):
 	# If is moving
@@ -85,10 +105,7 @@ func show_character_animation(move_dir: Vector2):
 		self.idle_timer.start()
 		self.idle = false
 		
-		if move_dir.y != 0:
-			self.dir = "d" if move_dir.y > 0 else "u"
-		if move_dir.x != 0:
-			self.dir = "r" if move_dir.x > 0 else "l"
+		self.dir = self.get_dir_string_from_vector(move_dir)
 		
 		# Update animation based on if moving and dir
 		var animation = "move_" + self.dir
