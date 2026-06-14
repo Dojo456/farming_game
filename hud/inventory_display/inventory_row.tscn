@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://q1lbfo5276sp"]
+
+[ext_resource type="Script" uid="uid://csem7f5iln0ht" path="res://hud/inventory_display/inventory_row.gd" id="1_vsnhy"]
+[ext_resource type="Script" uid="uid://dfowch3ga6kcf" path="res://world/inventory_slot.gd" id="2_i0epc"]
+[ext_resource type="Resource" uid="uid://b4d3nwvjx2iki" path="res://world/items/all/hoe_item.tres" id="3_2vblx"]
+[ext_resource type="Resource" uid="uid://cabsgxbmgdss5" path="res://world/items/all/wheat.tres" id="4_b34nw"]
+[ext_resource type="PackedScene" uid="uid://cf8b4ydkqkh4u" path="res://hud/inventory_display/inventory_slot_display.tscn" id="7_i0epc"]
+
+[sub_resource type="Resource" id="Resource_ym5i8"]
+script = ExtResource("2_i0epc")
+item = ExtResource("3_2vblx")
+count = 1
+metadata/_custom_type_script = "uid://dfowch3ga6kcf"
+
+[sub_resource type="Resource" id="Resource_emnhq"]
+script = ExtResource("2_i0epc")
+item = ExtResource("4_b34nw")
+count = 5
+metadata/_custom_type_script = "uid://dfowch3ga6kcf"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0epc"]
+bg_color = Color(0.95130223, 0.8451491, 0.58433115, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.69690216, 0.5436762, 0.21479997, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 1
+
+[node name="InventoryRow" type="Control" unique_id=931374615]
+layout_mode = 3
+anchor_bottom = 192.0
+offset_right = 328.0
+offset_bottom = -61392.0
+script = ExtResource("1_vsnhy")
+_slots = Array[ExtResource("2_i0epc")]([SubResource("Resource_ym5i8"), SubResource("Resource_emnhq"), null, null, null, null, null, null])
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=328271935]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i0epc")
+
+[node name="HBoxContainer" type="GridContainer" parent="PanelContainer" unique_id=1424559382]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8
+
+[node name="InventorySlotDisplay" parent="PanelContainer/HBoxContainer" unique_id=288103474 instance=ExtResource("7_i0epc")]
+layout_mode = 2
+active = true
+
+[node name="InventorySlotDisplay4" parent="PanelContainer/HBoxContainer" unique_id=1849569653 instance=ExtResource("7_i0epc")]
+layout_mode = 2
+
+[node name="InventorySlotDisplay3" parent="PanelContainer/HBoxContainer" unique_id=691341482 instance=ExtResource("7_i0epc")]
+layout_mode = 2
+
+[node name="InventorySlotDisplay2" parent="PanelContainer/HBoxContainer" unique_id=1117433749 instance=ExtResource("7_i0epc")]
+layout_mode = 2
+
+[node name="InventorySlotDisplay5" parent="PanelContainer/HBoxContainer" unique_id=2096379717 instance=ExtResource("7_i0epc")]
+layout_mode = 2
+
+[node name="InventorySlotDisplay6" parent="PanelContainer/HBoxContainer" unique_id=1982079417 instance=ExtResource("7_i0epc")]
+layout_mode = 2
+
+[node name="InventorySlotDisplay7" parent="PanelContainer/HBoxContainer" unique_id=5895184 instance=ExtResource("7_i0epc")]
+layout_mode = 2
+
+[node name="InventorySlotDisplay8" parent="PanelContainer/HBoxContainer" unique_id=1138667969 instance=ExtResource("7_i0epc")]
+layout_mode = 2

@@ -92,7 +92,7 @@ func get_dir_string_from_vector(vec: Vector2) -> String:
 		Vector2(-1, 1): "l",
 		# Same for right
 		Vector2.RIGHT: "r",
-		Vector2(1, -1): "r",
+		Vector2(1,-1): "r",
 		Vector2(1, 1): "r",
 	}
 	

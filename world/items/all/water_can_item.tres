@@ -91,6 +91,6 @@ region = Rect2(0, 0, 16, 16)
 script = ExtResource("1_h8k30")
 name = "Watering Can"
 sprite = SubResource("AtlasTexture_2xvhb")
-action = 3
+action = 2
 animations = SubResource("SpriteFrames_xtjll")
 metadata/_custom_type_script = "uid://chbqs17hxn6r4"

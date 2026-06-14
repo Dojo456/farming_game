@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c7u8sr34ray2v" path="res://hud/hud.gd" id="1_2gk58"]
 [ext_resource type="Texture2D" uid="uid://e8jisysjp7ob" path="res://Sprout Lands - Sprites - Basic pack/Objects/Basic_Plants.png" id="2_318vg"]
-[ext_resource type="PackedScene" uid="uid://q1lbfo5276sp" path="res://hud/inventory_row.tscn" id="3_318vg"]
-[ext_resource type="Script" uid="uid://chbqs17hxn6r4" path="res://world/items/item.gd" id="4_svhta"]
+[ext_resource type="PackedScene" uid="uid://q1lbfo5276sp" path="res://hud/inventory_display/inventory_row.tscn" id="3_318vg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gk58"]
 bg_color = Color(0.9072878, 0.8226904, 0.6088919, 1)
@@ -73,10 +72,11 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -160.0
-offset_top = -40.0
-offset_right = 160.0
+offset_left = -192.0
+offset_top = -48.0
+offset_right = 136.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
-_items = Array[ExtResource("4_svhta")]([])
+
+[connection signal="selection_changed" from="InventoryBar" to="." method="_on_inventory_bar_selection_changed"]

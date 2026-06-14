@@ -12,7 +12,7 @@ var cursor_locked = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	character.global_position = map.spawn_point
-	character.holding_item = GameState.inventory[GameState.inventory_select]
+	character.holding_item = GameState.inventory[GameState.inventory_select].item
 
 func perform_action(action: Item.ItemActions, tile: Vector2):
 	match (action):
@@ -39,7 +39,8 @@ func use_active_item():
 		var relative_dir_to_character = (mouse_pos - character.global_position).normalized().round()
 		
 		var use_item = func():
-			await character.play_sprite_frame_once(GameState.active_item.animations, character.get_dir_string_from_vector(relative_dir_to_character))
+			if GameState.active_item.animations:
+				await character.play_sprite_frame_once(GameState.active_item.animations, character.get_dir_string_from_vector(relative_dir_to_character))
 			self.perform_action(action, current_cursor_tile)
 			cursor_locked = false
 		use_item.call()

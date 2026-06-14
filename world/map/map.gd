@@ -5,7 +5,6 @@ class_name Map
 @onready var spawn_point: Vector2 = $Marker2D.global_position
 @onready var _base_water: TileMapLayer = $BaseWaterLayer
 @onready var _dirt: TileMapLayer = $DirtLayer
-@onready var _watered_dirt: TileMapLayer = $DirtLayer/WateredDirtLayer
 @onready var _grass: TileMapLayer = $GrassLayer
 
 var tile_size: Vector2:

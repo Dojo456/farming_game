@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cf8b4ydkqkh4u"]
+
+[ext_resource type="Script" uid="uid://d38pvvu3vdmyc" path="res://hud/inventory_display/inventory_slot_display.gd" id="1_t2q7r"]
+[ext_resource type="Resource" uid="uid://b7twqe4x2t4yk" path="res://world/items/all/wheat_seed.tres" id="2_p1sdq"]
+[ext_resource type="Script" uid="uid://dfowch3ga6kcf" path="res://world/inventory_slot.gd" id="3_2n0vh"]
+[ext_resource type="Texture2D" uid="uid://ceog5w6t6x5pp" path="res://Sprout Lands - Sprites - Basic pack/Objects/Basic Plants.png" id="4_2n0vh"]
+
+[sub_resource type="Resource" id="Resource_p1sdq"]
+script = ExtResource("3_2n0vh")
+item = ExtResource("2_p1sdq")
+count = 3
+metadata/_custom_type_script = "uid://dfowch3ga6kcf"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mb5ag"]
+atlas = ExtResource("4_2n0vh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="FontVariation" id="FontVariation_2n0vh"]
+spacing_top = -4
+spacing_bottom = -4
+
+[node name="InventorySlotDisplay" type="MarginContainer" unique_id=288103474]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -472.0
+offset_bottom = -280.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_t2q7r")
+slot = SubResource("Resource_p1sdq")
+
+[node name="Panel" type="Panel" parent="." unique_id=349155005]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=380836166]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=1703634484]
+layout_mode = 2
+texture = SubResource("AtlasTexture_mb5ag")
+
+[node name="Label" type="Label" parent="." unique_id=44956222]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = SubResource("FontVariation_2n0vh")
+text = "3"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Button" type="Button" parent="." unique_id=733458153]
+layout_mode = 2
+flat = true
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

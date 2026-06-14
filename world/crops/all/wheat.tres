@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="Crop" format=3 uid="uid://c47lki7sn8xe7"]
+
+[ext_resource type="Texture2D" uid="uid://ceog5w6t6x5pp" path="res://Sprout Lands - Sprites - Basic pack/Objects/Basic Plants.png" id="1_jb6hu"]
+[ext_resource type="Resource" uid="uid://cabsgxbmgdss5" path="res://world/items/all/wheat.tres" id="1_pumuu"]
+[ext_resource type="Script" uid="uid://b2q7hekljesjg" path="res://world/crops/crop.gd" id="2_jb6hu"]
+[ext_resource type="Resource" uid="uid://b7twqe4x2t4yk" path="res://world/items/all/wheat_seed.tres" id="3_4l7rj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4l7rj"]
+atlas = ExtResource("1_jb6hu")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7lv2"]
+atlas = ExtResource("1_jb6hu")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fh443"]
+atlas = ExtResource("1_jb6hu")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34gei"]
+atlas = ExtResource("1_jb6hu")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k2afq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4l7rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7lv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fh443")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34gei")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("2_jb6hu")
+harvested_item = ExtResource("1_pumuu")
+seed_item = ExtResource("3_4l7rj")
+growth_stages = SubResource("SpriteFrames_k2afq")
+stage_lengths = Array[int]([3, 2, 1, 0])
+metadata/_custom_type_script = "uid://b2q7hekljesjg"

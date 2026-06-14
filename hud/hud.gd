@@ -13,3 +13,7 @@ func _process(delta: float) -> void:
 	score_label.text = "%sx" % GameState.score
 	
 	inventory_bar.set_items(GameState.inventory.slice(0, 8))
+
+
+func _on_inventory_bar_selection_changed(selection: int) -> void:
+	StateInteractor.set_inventory_select(selection)
