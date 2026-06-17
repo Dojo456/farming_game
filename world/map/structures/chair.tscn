@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b7ke7g38dxesw"]
+
+[ext_resource type="Texture2D" uid="uid://csskcmce3oumr" path="res://Sprout Lands - Sprites - Basic pack/Objects/Basic Furniture.png" id="1_2bnfe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqf0k"]
+atlas = ExtResource("1_2bnfe")
+region = Rect2(96, 32, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bnfe"]
+size = Vector2(10, 7)
+
+[node name="Chair" type="Node2D" unique_id=815126059]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1975760611]
+texture = SubResource("AtlasTexture_sqf0k")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2132456501]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1195769126]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_2bnfe")

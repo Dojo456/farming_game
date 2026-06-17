@@ -26,25 +26,40 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4l7rj")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q7lv2")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fh443")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_34gei")
 }],
 "loop": true,
-"name": &"default",
+"name": &"3",
 "speed": 5.0
 }]
 
 [resource]
 script = ExtResource("2_jb6hu")
-harvested_item = ExtResource("1_pumuu")
 seed_item = ExtResource("3_4l7rj")
+harvested_item = ExtResource("1_pumuu")
 growth_stages = SubResource("SpriteFrames_k2afq")
 stage_lengths = Array[int]([3, 2, 1, 0])
 metadata/_custom_type_script = "uid://b2q7hekljesjg"

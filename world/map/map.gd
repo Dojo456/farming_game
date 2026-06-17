@@ -6,6 +6,7 @@ class_name Map
 @onready var _base_water: TileMapLayer = $BaseWaterLayer
 @onready var _dirt: TileMapLayer = $DirtLayer
 @onready var _grass: TileMapLayer = $GrassLayer
+@onready var _struct: TileMapLayer = $StructureLayer
 
 var tile_size: Vector2:
 	get():
@@ -19,6 +20,28 @@ func closest_tile(global_position: Vector2) -> Vector2:
 	return floor((global_position - self.global_position) / 
 	Vector2(_dirt.tile_set.tile_size))
 	
+func _tile_pos(tile: Vector2) -> Vector2:
+	return floor(tile * Vector2(_dirt.tile_set.tile_size))
+
+@onready var _planted_crop = preload("res://world/map/structures/planted_crop.tscn")
+func plant_crop_at_tile(tile: Vector2, crop: Crop):
+	var _dirt_data = _dirt.get_cell_tile_data(tile)
+	if not (_dirt_data and _dirt_data.get_custom_data("watered")):
+		return
+		
+	var struct_data = _struct.get_cell_source_id(tile)
+	# Equal -1 if cell is empty, if not empty, return
+	if struct_data != -1:
+		return
+	
+	var new_crop: PlantedCrop = _planted_crop.instantiate()
+	new_crop.crop = crop
+	new_crop.age = 0
+	new_crop.position = _tile_pos(tile) + (Vector2(_dirt.tile_set.tile_size) / 2)
+	
+	_struct.add_child(new_crop)
+	_struct.set_cell(tile, 5, Vector2i.ZERO, 2)
+
 ## Tile the tile at the given position.
 ## If only_test is true, does not actually till the tile. Can be useful for testing if a tile is tillable
 ##
@@ -56,8 +79,6 @@ func water_tile(tile: Vector2, only_test: bool = false) -> bool:
 	BetterTerrain.update_terrain_cell(_dirt, tile)
 	
 	return true
-	
-	return true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -71,3 +92,9 @@ func _process(delta: float) -> void:
 				#
 			#if state._watered[i][j]:
 				#self.water_tile(Vector2(i, j))
+
+
+func _on_age_ticker_timeout() -> void:
+	for child in _struct.get_children():
+		if "age" in child:
+			child.age += 1

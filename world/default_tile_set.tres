@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bufreeknykuy3" path="res://Sprout Lands - Sprites - Basic pack/Tilesets/Water.png" id="3_avt7v"]
 [ext_resource type="Texture2D" uid="uid://ceog5w6t6x5pp" path="res://Sprout Lands - Sprites - Basic pack/Objects/Basic Plants.png" id="4_83ws6"]
 [ext_resource type="Texture2D" uid="uid://c8yt03sjqgixm" path="res://Sprout Lands - Sprites - Basic pack/Tilesets/Wet_Dirt_Wide_v2.png" id="5_ol0jr"]
+[ext_resource type="PackedScene" uid="uid://b7ke7g38dxesw" path="res://world/map/structures/chair.tscn" id="6_c7olt"]
+[ext_resource type="PackedScene" uid="uid://b0r6nclafydw3" path="res://world/map/structures/placeholder_structure.tscn" id="7_c7olt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p5pve"]
 texture = ExtResource("1_083dv")
@@ -1317,6 +1319,11 @@ texture = ExtResource("5_ol0jr")
 9:6/0 = 0
 9:6/0/custom_data_1 = true
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c7olt"]
+resource_name = "Structures"
+scenes/1/scene = ExtResource("6_c7olt")
+scenes/2/scene = ExtResource("7_c7olt")
+
 [resource]
 physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "tillable"
@@ -1328,6 +1335,7 @@ sources/1 = SubResource("TileSetAtlasSource_urblq")
 sources/2 = SubResource("TileSetAtlasSource_6gk0n")
 sources/3 = SubResource("TileSetAtlasSource_japyv")
 sources/4 = SubResource("TileSetAtlasSource_fr8k7")
+sources/5 = SubResource("TileSetScenesCollectionSource_c7olt")
 metadata/_better_terrain = {
 &"decoration": ["Decoration", Color(0.4117647, 0.4117647, 0.4117647, 1), 3, [], {
 &"path": "res://addons/better-terrain/icons/Decoration.svg"

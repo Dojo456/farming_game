@@ -18,11 +18,12 @@ offset_bottom = 95.0
 mouse_filter = 2
 color = Color(0, 0, 1, 0.37254903)
 
-[node name="MainCharacter" parent="." unique_id=21980762 instance=ExtResource("2_bxsma")]
-position = Vector2(144, 93)
+[node name="MainCharacter" parent="Map" unique_id=21980762 instance=ExtResource("2_bxsma")]
+y_sort_enabled = true
+position = Vector2(91, 80)
 speed = 64
 
-[node name="Camera2D" type="Camera2D" parent="MainCharacter" unique_id=24690341]
+[node name="Camera2D" type="Camera2D" parent="Map/MainCharacter" unique_id=24690341]
 zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
@@ -40,6 +41,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -39.0
+offset_top = 6.0
+offset_right = -39.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

@@ -14,7 +14,11 @@ var inventory_select: int = 0:
 		
 var active_item: Item:
 	get():
-		return inventory.get(inventory_select).item
+		if inventory_select < inventory.size():
+			var select = inventory.get(inventory_select)
+			return select.item if select else null
+		else:
+			return null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

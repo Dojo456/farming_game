@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b2nxh6ihgdvgd" path="res://world/map/map.gd" id="1_wijl4"]
 
 [node name="Map" type="Node2D" unique_id=1113249927]
+y_sort_enabled = true
 script = ExtResource("1_wijl4")
 
 [node name="BaseWaterLayer" type="TileMapLayer" parent="." unique_id=436524435]
@@ -18,8 +19,16 @@ tile_set = ExtResource("1_c7s6e")
 tile_map_data = PackedByteArray("AAAVAA4AAQACAAEAAAARAA0AAQABAAEAAAARAA4AAQABAAEAAAASAA4AAQABAAEAAAATAA4AAQABAAEAAAAUAA4AAQABAAEAAAAVAA0AAQACAAEAAAAUAA0AAQABAAEAAAATAA0AAQABAAEAAAASAA0AAQABAAEAAAASAA8AAQABAAIAAAATAA8AAQABAAIAAAAUAA8AAQABAAIAAAAVAA8AAQACAAIAAAARAA8AAQABAAIAAAARAAwAAQABAAAAAAASAAwAAQABAAAAAAATAAwAAQABAAAAAAAUAAwAAQABAAAAAAAVAAwAAQACAAAAAAAQAA0AAQAAAAEAAAAQAA4AAQAAAAEAAAAQAAwAAQAAAAAAAAAQAA8AAQAAAAIAAAAGAAQAAQAAAAAAAAAGAAUAAQAAAAEAAAAGAAYAAQAAAAIAAAAHAAYAAQABAAIAAAAHAAUAAQABAAEAAAAIAAUAAQABAAEAAAAJAAUAAQACAAEAAAAIAAQAAQABAAAAAAAHAAQAAQABAAAAAAAJAAQAAQACAAAAAAAJAAYAAQACAAIAAAAIAAYAAQABAAIAAAA=")
 tile_set = ExtResource("1_c7s6e")
 
-[node name="CropLayer" type="TileMapLayer" parent="." unique_id=1411950774]
+[node name="StructureLayer" type="TileMapLayer" parent="." unique_id=1411950774]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAFAAUABQAAAAAAAQA=")
 tile_set = ExtResource("1_c7s6e")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=74468147]
 position = Vector2(88, 56)
+
+[node name="AgeTicker" type="Timer" parent="." unique_id=1846418277]
+process_callback = 0
+autostart = true
+
+[connection signal="timeout" from="AgeTicker" to="." method="_on_age_ticker_timeout"]
