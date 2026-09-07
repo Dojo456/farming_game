@@ -14,7 +14,7 @@ func _ready() -> void:
 	character.global_position = map.spawn_point
 	character.holding_item = GameState.inventory[GameState.inventory_select].item
 
-func perform_item_action(item: Item, tile: Vector2):
+func perform_item_action(item: Item, tile: Vector2i):
 	var action = item.action
 	
 	match (action):
@@ -30,13 +30,15 @@ func perform_item_action(item: Item, tile: Vector2):
 				
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		use_active_item()
+		handle_mouse_press()
 		
-func use_active_item():
+func handle_mouse_press():
+	var mouse_pos = map.get_global_mouse_position()
+	
+	var current_cursor_tile = map.closest_tile(mouse_pos)
+	
+	# If holding item, use the item
 	if GameState.active_item:
-		var mouse_pos = map.get_global_mouse_position()
-		
-		var current_cursor_tile = map.closest_tile(mouse_pos)
 		cursor_locked = true
 		
 		var relative_dir_to_character = (mouse_pos - character.global_position).normalized().round()
@@ -47,7 +49,9 @@ func use_active_item():
 			self.perform_item_action(GameState.active_item, current_cursor_tile)
 			cursor_locked = false
 		use_item.call()
-	
+	# If not holding an item, it is assumed to be an "interact"
+	else:
+		map.interact_at_tile(current_cursor_tile)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

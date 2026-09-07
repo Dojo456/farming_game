@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://b7ke7g38dxesw"]
 
-[ext_resource type="Texture2D" uid="uid://csskcmce3oumr" path="res://Sprout Lands - Sprites - Basic pack/Objects/Basic Furniture.png" id="1_2bnfe"]
+[ext_resource type="Texture2D" uid="uid://csskcmce3oumr" path="res://Sprout Lands - Sprites - Basic pack/Objects/Basic Furniture.png" id="1_3ukwr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sqf0k"]
-atlas = ExtResource("1_2bnfe")
+atlas = ExtResource("1_3ukwr")
 region = Rect2(96, 32, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bnfe"]
-size = Vector2(10, 7)
+size = Vector2(12, 7)
 
 [node name="Chair" type="Node2D" unique_id=815126059]
 

@@ -1,6 +1,10 @@
-extends Node2D
+@tool
 
 class_name Map
+
+extends Node2D
+
+@export var state: MapState
 
 @onready var spawn_point: Vector2 = $Marker2D.global_position
 @onready var _base_water: TileMapLayer = $BaseWaterLayer
@@ -8,23 +12,57 @@ class_name Map
 @onready var _grass: TileMapLayer = $GrassLayer
 @onready var _struct: TileMapLayer = $StructureLayer
 
-var tile_size: Vector2:
+var tile_size: Vector2i:
 	get():
 		return self._dirt.tile_set.tile_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	var sync_from_editor = true
 	
-func closest_tile(global_position: Vector2) -> Vector2:
+	if sync_from_editor:
+		var state = MapState.new()
+		
+		var max_x = 0
+		var max_y = 0
+		# Take current tiles from editor and input them into the state
+		
+		for c in _base_water.get_used_cells():
+			# Find the largest value for x and y of all layers and use that to set map size in state
+			if c.x > max_x:
+				max_x = c.x
+			
+			if c.y > max_y:
+				max_y = c.y
+				
+		state._set_map_to_size(Vector2i(max_x, max_y))
+		
+		for c in _grass.get_used_cells():
+			# get all land "grass" cells
+			state._land[c.x][c.y] = true
+			
+		for c in _dirt.get_used_cells_by_id(2):
+			# get all land "dirt" cells
+			state._tilled[c.x][c.y] = true
+			
+		for c in _dirt.get_used_cells_by_id(3):
+			# get all land "dirt" cells
+			state._watered[c.x][c.y] = true
+
+	else: # load from presaved state
+		_sync_from_state()
+	
+	state.changed.connect(_sync_from_state)
+	
+func closest_tile(global_position: Vector2) -> Vector2i:
 	return floor((global_position - self.global_position) / 
 	Vector2(_dirt.tile_set.tile_size))
 	
-func _tile_pos(tile: Vector2) -> Vector2:
-	return floor(tile * Vector2(_dirt.tile_set.tile_size))
+func _tile_pos(tile: Vector2i) -> Vector2:
+	return floor(tile * Vector2i(_dirt.tile_set.tile_size))
 
 @onready var _planted_crop = preload("res://world/map/structures/planted_crop.tscn")
-func plant_crop_at_tile(tile: Vector2, crop: Crop):
+func plant_crop_at_tile(tile: Vector2i, crop: Crop):
 	var _dirt_data = _dirt.get_cell_tile_data(tile)
 	if not (_dirt_data and _dirt_data.get_custom_data("watered")):
 		return
@@ -42,11 +80,14 @@ func plant_crop_at_tile(tile: Vector2, crop: Crop):
 	_struct.add_child(new_crop)
 	_struct.set_cell(tile, 5, Vector2i.ZERO, 2)
 
+func interact_at_tile(tile: Vector2i):
+	pass
+
 ## Tile the tile at the given position.
 ## If only_test is true, does not actually till the tile. Can be useful for testing if a tile is tillable
 ##
 ## @return: true/false if the tile was tilled
-func till_tile(tile: Vector2, only_test: bool = false) -> bool:
+func till_tile(tile: Vector2i, only_test: bool = false) -> bool:
 	var tillable = false
 	
 	var grass_cell = _grass.get_cell_tile_data(tile)
@@ -66,7 +107,7 @@ func till_tile(tile: Vector2, only_test: bool = false) -> bool:
 	
 	return true
 	
-func water_tile(tile: Vector2, only_test: bool = false) -> bool:
+func water_tile(tile: Vector2i, only_test: bool = false) -> bool:
 	var is_tilled = false
 	
 	var dirt_cell = _dirt.get_cell_tile_data(tile)
@@ -79,6 +120,33 @@ func water_tile(tile: Vector2, only_test: bool = false) -> bool:
 	BetterTerrain.update_terrain_cell(_dirt, tile)
 	
 	return true
+	
+func _sync_from_state() -> void:
+	# Clear all existing tiles from layers
+	_base_water.clear()
+	_grass.clear()
+	_dirt.clear()
+	_struct.clear()
+	
+	for i in self.state.map_size.y:
+		for j in self.state.map_size.x:
+			BetterTerrain.set_cell(_base_water, Vector2i(i, j), 0)
+			
+			var tile_coord = Vector2i(i, j)
+			
+			if state.tile_land(tile_coord):
+				BetterTerrain.set_cell(_grass, tile_coord, 1)
+			
+			if state.tile_tilled(tile_coord):
+				self.till_tile(tile_coord)
+				
+			if state.tile_watered(tile_coord):
+				self.water_tile(tile_coord)
+				
+	BetterTerrain.update_terrain_area(_base_water, Rect2i(Vector2i.ZERO, state.map_size))
+	BetterTerrain.update_terrain_area(_grass, Rect2i(Vector2i.ZERO, state.map_size))
+	BetterTerrain.update_terrain_area(_dirt, Rect2i(Vector2i.ZERO, state.map_size))
+	BetterTerrain.update_terrain_area(_struct, Rect2i(Vector2i.ZERO, state.map_size))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
