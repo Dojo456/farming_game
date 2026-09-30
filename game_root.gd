@@ -25,6 +25,8 @@ func perform_item_action(item: Item, tile: Vector2i):
 		Item.ItemActions.PLANT:
 			var crop = Crops.from_seed(item)
 			map.plant_crop_at_tile(tile, crop)
+		Item.ItemActions.HARVEST:
+			map.harvest_tile(tile)
 		_:
 			pass
 				
@@ -55,7 +57,7 @@ func handle_mouse_press():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	GameState.score = map._dirt.get_used_cells().size()
+	GameState.score = map._dirt_layer.get_used_cells().size()
 	
 	if not cursor_locked:
 		var cursor_pos = map.closest_tile(map.get_global_mouse_position())

@@ -8,6 +8,25 @@
 [ext_resource type="PackedScene" uid="uid://b7ke7g38dxesw" path="res://world/map/structures/chair.tscn" id="6_c7olt"]
 [ext_resource type="PackedScene" uid="uid://b0r6nclafydw3" path="res://world/map/structures/placeholder_structure.tscn" id="7_c7olt"]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6gk0n"]
+texture = ExtResource("3_avt7v")
+0:0/0 = 0
+0:0/0/metadata/_better_terrain = {
+&"type": 0
+}
+1:0/0 = 0
+1:0/0/metadata/_better_terrain = {
+&"type": 0
+}
+2:0/0 = 0
+2:0/0/metadata/_better_terrain = {
+&"type": 0
+}
+3:0/0 = 0
+3:0/0/metadata/_better_terrain = {
+&"type": 0
+}
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p5pve"]
 texture = ExtResource("1_083dv")
 0:0/0 = 0
@@ -828,40 +847,6 @@ texture = ExtResource("2_6gk0n")
 8:6/0 = 0
 9:6/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6gk0n"]
-texture = ExtResource("3_avt7v")
-0:0/0 = 0
-0:0/0/metadata/_better_terrain = {
-&"type": 0
-}
-1:0/0 = 0
-1:0/0/metadata/_better_terrain = {
-&"type": 0
-}
-2:0/0 = 0
-2:0/0/metadata/_better_terrain = {
-&"type": 0
-}
-3:0/0 = 0
-3:0/0/metadata/_better_terrain = {
-&"type": 0
-}
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_japyv"]
-texture = ExtResource("4_83ws6")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fr8k7"]
 texture = ExtResource("5_ol0jr")
 0:0/0 = 0
@@ -1324,18 +1309,33 @@ resource_name = "Structures"
 scenes/1/scene = ExtResource("6_c7olt")
 scenes/2/scene = ExtResource("7_c7olt")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_japyv"]
+texture = ExtResource("4_83ws6")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+
 [resource]
 physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "tillable"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "watered"
 custom_data_layer_1/type = 1
-sources/0 = SubResource("TileSetAtlasSource_p5pve")
-sources/1 = SubResource("TileSetAtlasSource_urblq")
-sources/2 = SubResource("TileSetAtlasSource_6gk0n")
-sources/3 = SubResource("TileSetAtlasSource_japyv")
-sources/4 = SubResource("TileSetAtlasSource_fr8k7")
-sources/5 = SubResource("TileSetScenesCollectionSource_c7olt")
+sources/0 = SubResource("TileSetAtlasSource_6gk0n")
+sources/2 = SubResource("TileSetAtlasSource_urblq")
+sources/1 = SubResource("TileSetAtlasSource_p5pve")
+sources/3 = SubResource("TileSetAtlasSource_fr8k7")
+sources/4 = SubResource("TileSetScenesCollectionSource_c7olt")
+sources/5 = SubResource("TileSetAtlasSource_japyv")
 metadata/_better_terrain = {
 &"decoration": ["Decoration", Color(0.4117647, 0.4117647, 0.4117647, 1), 3, [], {
 &"path": "res://addons/better-terrain/icons/Decoration.svg"

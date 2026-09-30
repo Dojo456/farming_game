@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://j5j3yrvshqdu"]
+
+[ext_resource type="Script" uid="uid://chbqs17hxn6r4" path="res://world/items/item.gd" id="1_5p83c"]
+[ext_resource type="Texture2D" uid="uid://gupfunnxc85o" path="res://Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Actions.png" id="1_tsm5y"]
+[ext_resource type="Texture2D" uid="uid://couxnne5ig3o4" path="res://Sprout Lands - Sprites - Basic pack/Objects/Basic_tools_and_meterials.png" id="3_17f5j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4vc4"]
+atlas = ExtResource("1_tsm5y")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vud7c"]
+atlas = ExtResource("1_tsm5y")
+region = Rect2(48, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s201p"]
+atlas = ExtResource("1_tsm5y")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji0cc"]
+atlas = ExtResource("1_tsm5y")
+region = Rect2(48, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irl5k"]
+atlas = ExtResource("1_tsm5y")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7okt"]
+atlas = ExtResource("1_tsm5y")
+region = Rect2(48, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohbhl"]
+atlas = ExtResource("1_tsm5y")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg6o6"]
+atlas = ExtResource("1_tsm5y")
+region = Rect2(48, 240, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_17f5j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4vc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vud7c")
+}],
+"loop": 1,
+"name": &"d",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s201p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji0cc")
+}],
+"loop": 1,
+"name": &"l",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irl5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7okt")
+}],
+"loop": 1,
+"name": &"r",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohbhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg6o6")
+}],
+"loop": 1,
+"name": &"u",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsm5y"]
+atlas = ExtResource("3_17f5j")
+region = Rect2(16, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_5p83c")
+name = "Sickle"
+sprite = SubResource("AtlasTexture_tsm5y")
+action = 4
+animations = SubResource("SpriteFrames_17f5j")
+metadata/_custom_type_script = "uid://chbqs17hxn6r4"

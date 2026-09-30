@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b7ke7g38dxesw"]
 
 [ext_resource type="Texture2D" uid="uid://csskcmce3oumr" path="res://Sprout Lands - Sprites - Basic pack/Objects/Basic Furniture.png" id="1_3ukwr"]
+[ext_resource type="Script" uid="uid://btpfd0knmu1s6" path="res://world/map/structures/chair.gd" id="1_oml42"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sqf0k"]
 atlas = ExtResource("1_3ukwr")
@@ -10,6 +11,7 @@ region = Rect2(96, 32, 16, 16)
 size = Vector2(12, 7)
 
 [node name="Chair" type="Node2D" unique_id=815126059]
+script = ExtResource("1_oml42")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1975760611]
 texture = SubResource("AtlasTexture_sqf0k")

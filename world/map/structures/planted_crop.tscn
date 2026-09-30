@@ -26,7 +26,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4l7rj")
 }],
-"loop": true,
+"loop": 1,
 "name": &"0",
 "speed": 5.0
 }, {
@@ -34,7 +34,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q7lv2")
 }],
-"loop": true,
+"loop": 1,
 "name": &"1",
 "speed": 5.0
 }, {
@@ -42,7 +42,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fh443")
 }],
-"loop": true,
+"loop": 1,
 "name": &"2",
 "speed": 5.0
 }, {
@@ -50,7 +50,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_34gei")
 }],
-"loop": true,
+"loop": 1,
 "name": &"3",
 "speed": 5.0
 }]
@@ -63,4 +63,4 @@ age = 10
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=602289212]
 sprite_frames = SubResource("SpriteFrames_k2afq")
 animation = &"3"
-frame_progress = 0.6339857
+frame_progress = 0.7262667

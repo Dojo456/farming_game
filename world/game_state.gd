@@ -1,11 +1,13 @@
 extends Node
+class_name ClassGameState
 
 var score: int = 0
 
 # Inventory related variables
 signal inventory_select_changed(int)
 
-var inventory: Array[InventorySlot] = [InventorySlot.new(preload("res://world/items/all/hoe_item.tres")), InventorySlot.new(preload("res://world/items/all/water_can_item.tres")), InventorySlot.new(preload("res://world/items/all/wheat_seed.tres"), 5)]
+var inventory: Array[InventorySlot] = [InventorySlot.new(preload("res://world/items/all/hoe_item.tres")), InventorySlot.new(preload("res://world/items/all/water_can_item.tres")), InventorySlot.new(preload("res://world/items/all/wheat_seed.tres"), 5),
+InventorySlot.new(preload("res://world/items/all/sickle.tres"))]
 
 var inventory_select: int = 0:
 	set(value):

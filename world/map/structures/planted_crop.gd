@@ -2,7 +2,7 @@
 
 class_name PlantedCrop
 
-extends Node2D
+extends Struct
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
