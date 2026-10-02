@@ -3,6 +3,7 @@
 [ext_resource type="TileSet" uid="uid://btc44epxom1fy" path="res://world/default_tile_set.tres" id="1_c7s6e"]
 [ext_resource type="Script" uid="uid://b2nxh6ihgdvgd" path="res://world/map/map.gd" id="1_wijl4"]
 [ext_resource type="Script" uid="uid://c6ge0wrk45oqh" path="res://world/map/map_state.gd" id="2_sql4x"]
+[ext_resource type="PackedScene" uid="uid://bge2gualoq4i4" path="res://world/map/structures/planted_crop.tscn" id="4_u3wvt"]
 
 [sub_resource type="Resource" id="Resource_sql4x"]
 script = ExtResource("2_sql4x")
@@ -26,12 +27,24 @@ tile_map_data = PackedByteArray("AAAGAAMAAQAAAAAAAAAHAAMAAQABAAAAAAAIAAMAAQABAAA
 tile_set = ExtResource("1_c7s6e")
 
 [node name="DirtLayer" type="TileMapLayer" parent="." unique_id=455171212]
-tile_map_data = PackedByteArray("AAAKAAUAAgAAAAAAAAALAAUAAgABAAAAAAAMAAUAAgABAAAAAAANAAUAAgABAAAAAAAOAAUAAgABAAAAAAAPAAUAAgABAAAAAAAQAAUAAgACAAAAAAAKAAYAAgAAAAEAAAALAAYAAgABAAEAAAAMAAYAAgABAAEAAAANAAYAAgABAAEAAAAOAAYAAgABAAEAAAAPAAYAAgABAAEAAAAQAAYAAgACAAEAAAAKAAcAAgAAAAEAAAALAAcAAgABAAEAAAAMAAcAAgABAAEAAAANAAcAAgABAAEAAAAOAAcAAgABAAEAAAAPAAcAAgABAAEAAAAQAAcAAgACAAEAAAAKAAgAAgAAAAEAAAALAAgAAgABAAEAAAAMAAgAAgABAAEAAAANAAgAAgABAAEAAAAOAAgAAgABAAEAAAAPAAgAAgABAAEAAAAQAAgAAgACAAEAAAAKAAkAAgAAAAIAAAALAAkAAgABAAIAAAAMAAkAAgABAAIAAAANAAkAAgABAAIAAAAOAAkAAgABAAIAAAAPAAkAAgABAAIAAAAQAAkAAgACAAIAAAA=")
+tile_map_data = PackedByteArray("AAAKAAUAAgAAAAAAAAALAAUAAgABAAAAAAAMAAUAAgABAAAAAAANAAUAAgABAAAAAAAOAAUAAgABAAAAAAAPAAUAAgABAAAAAAAQAAUAAgACAAAAAAAKAAYAAgAAAAEAAAALAAYAAgABAAEAAAAMAAYAAgABAAEAAAANAAYAAgABAAEAAAAOAAYAAwABAAEAAAAPAAYAAwABAAEAAAAQAAYAAgACAAEAAAAKAAcAAgAAAAEAAAALAAcAAgABAAEAAAAMAAcAAgABAAEAAAANAAcAAgABAAEAAAAPAAcAAwABAAEAAAAQAAcAAgACAAEAAAAKAAgAAgAAAAEAAAALAAgAAgABAAEAAAAMAAgAAgABAAEAAAANAAgAAgABAAEAAAAOAAgAAwABAAEAAAAPAAgAAwABAAEAAAAQAAgAAgACAAEAAAAKAAkAAgAAAAIAAAALAAkAAgABAAIAAAAMAAkAAgABAAIAAAANAAkAAgABAAIAAAAOAAkAAgABAAIAAAAPAAkAAgABAAIAAAAQAAkAAgACAAIAAAAOAAcAAwABAAEAAAA=")
 tile_set = ExtResource("1_c7s6e")
 
 [node name="StructureLayer" type="TileMapLayer" parent="." unique_id=1411950774]
 y_sort_enabled = true
 tile_set = ExtResource("1_c7s6e")
+
+[node name="PlantedCrop2" parent="StructureLayer" unique_id=1604792947 instance=ExtResource("4_u3wvt")]
+position = Vector2(232, 104)
+age = 24
+
+[node name="PlantedCrop3" parent="StructureLayer" unique_id=1713271936 instance=ExtResource("4_u3wvt")]
+position = Vector2(232, 120)
+age = 24
+
+[node name="PlantedCrop" parent="StructureLayer" unique_id=1272558988 instance=ExtResource("4_u3wvt")]
+position = Vector2(232, 136)
+age = 24
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=74468147]
 position = Vector2(201, 128)

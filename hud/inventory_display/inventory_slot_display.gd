@@ -4,7 +4,7 @@ extends Control
 class_name InventorySlotDisplay
 
 @export var slot: InventorySlot
-@export var active: bool = false
+@export var active: bool
 
 @onready var _texture = $MarginContainer/TextureRect
 @onready var _label = $Label
@@ -12,7 +12,7 @@ class_name InventorySlotDisplay
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if self.slot:
+	if self.slot and slot.item:
 		_texture.texture = slot.item.sprite
 		_label.text = str(slot.count) if slot.item.stackable else ""
 	else:
@@ -22,7 +22,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	_panel.visible = self.active
+	if not Engine.is_editor_hint():
+		_panel.visible = self.active
 
 signal pressed
 

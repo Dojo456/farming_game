@@ -31,7 +31,7 @@ func perform_item_action(item: Item, tile: Vector2i):
 			pass
 				
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed() and not cursor_locked:
 		handle_mouse_press()
 		
 func handle_mouse_press():
@@ -39,8 +39,8 @@ func handle_mouse_press():
 	
 	var current_cursor_tile = map.closest_tile(mouse_pos)
 	
-	# If holding item, use the item
-	if GameState.active_item:
+	# If holding item that can be used
+	if GameState.active_item and GameState.active_item.action:
 		cursor_locked = true
 		
 		var relative_dir_to_character = (mouse_pos - character.global_position).normalized().round()

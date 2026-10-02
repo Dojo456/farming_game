@@ -8,7 +8,10 @@ class_name InventorySlot
 func _init(item: Item, count = 0) -> void:
 	self.item = item
 	
-	if item.stackable and count > 0:
-		self.count = count
+	if item:
+		if item.stackable and count > 0:
+			self.count = count
+		else:
+			self.count = 1
 	else:
-		self.count = 1
+		self.count = 0

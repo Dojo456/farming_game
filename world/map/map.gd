@@ -48,6 +48,13 @@ func _ready() -> void:
 		update_arrs.call(_dirt_layer.get_used_cells_by_id(2), state._tilled)
 		# Tilled and also watered
 		update_arrs.call(_dirt_layer.get_used_cells_by_id(3), state._watered)
+		
+		# Special way for inserting structs
+		for s in _struct_layer.get_children():
+			if s is Node2D:
+				var tile = closest_tile(s.global_position)
+				
+				state._structs[tile.y][tile.x] = s
 
 	else: # load from presaved state
 		_sync_from_state()
@@ -61,13 +68,15 @@ func _tile_pos(tile: Vector2i) -> Vector2:
 
 @onready var _planted_crop = preload("res://world/map/structures/planted_crop.tscn")
 func plant_crop_at_tile(tile: Vector2i, crop: Crop):	
-	# Check tile is watered
-	if state.tile_watered(tile):
+	# Check tile is watered and no existing structs
+	if state.tile_watered(tile) and not state.tile_has_struct(tile):
 		var new_crop: PlantedCrop = _planted_crop.instantiate()
 		new_crop.crop = crop
 		new_crop.age = 0
 		new_crop.position = _tile_pos(tile) + (Vector2(_dirt_layer.tile_set.tile_size) / 2)
 		state.set_tile_struct(tile, new_crop)
+		
+		GameState.remove_item_from_inventory(crop.seed_item)
 
 func interact_at_tile(tile: Vector2i):
 	# Check if there is a mature crop at the tile
@@ -98,8 +107,19 @@ func water_tile(tile: Vector2i, only_test: bool = false) -> bool:
 func harvest_tile(tile: Vector2i, only_test: bool = false):
 	var s = state.tile_struct_get(tile)
 	
-	if s != null:
-		print(s)
+	# Is a crop, handle harvest and add crop item to inventory
+	if s is PlantedCrop:
+		# Check planted crop is mature
+		
+		var max_age = 0
+		for stage_length in s.crop.stage_lengths:
+			max_age += stage_length
+
+		if s.age > max_age: # Can harvest
+			GameState.add_item_to_inventory(s.crop.harvested_item)
+			
+			# TODO: For now assume that structs should be destroyed on harvest
+			state.set_tile_struct(tile, null)
 	
 ## Perform all drawing operations onto TileMapLayers based on MapState
 func _sync_from_state() -> void:
@@ -108,6 +128,10 @@ func _sync_from_state() -> void:
 	_grass_layer.clear()
 	_dirt_layer.clear()
 	_struct_layer.clear()
+	
+	var structs_to_free = {}
+	for s in _struct_layer.get_children():
+		structs_to_free[s] = true
 	
 	for i in self.state.map_size.x:
 		for j in self.state.map_size.y:
@@ -128,8 +152,12 @@ func _sync_from_state() -> void:
 				var c_struct = state.tile_struct_get(tile_coord)
 				_struct_layer.add_child(c_struct)
 				_struct_layer.set_cell(tile_coord)
+				structs_to_free.erase(c_struct)
 				
-				
+	# Remove structs that no longer exist in the state from struct layer
+	for s in structs_to_free.keys():
+		s.queue_free()
+	
 	BetterTerrain.update_terrain_area(_base_water_layer, Rect2i(Vector2i.ZERO, state.map_size))
 	BetterTerrain.update_terrain_area(_grass_layer, Rect2i(Vector2i.ZERO, state.map_size))
 	BetterTerrain.update_terrain_area(_dirt_layer, Rect2i(Vector2i.ZERO, state.map_size))

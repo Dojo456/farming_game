@@ -55,7 +55,7 @@ func tile_tilled(tile: Vector2i) -> bool:
 	return _get_tile_data(tile, _tilled)
 	
 func tile_has_struct(tile: Vector2i) -> bool:
-	return _get_tile_data(tile, _structs) != null
+	return _get_tile_data(tile, _structs, null) != null
 	
 func tile_struct_get(tile: Vector2i) -> Node2D:
 	return _get_tile_data(tile, _structs, null)

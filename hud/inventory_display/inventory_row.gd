@@ -16,12 +16,12 @@ func set_selected(val: int):
 	self.selected = val
 	selection_changed.emit(val)
 
-func set_items(slots: Array[InventorySlot]):		
+func set_items(slots: Array[InventorySlot]):
 	var resized = slots.duplicate()
 	resized.resize(row_size)
 	
-	if resized == _slots:
-		return
+	#if resized == _slots:
+		#return
 		
 	_slots = resized
 		
@@ -34,6 +34,7 @@ func set_items(slots: Array[InventorySlot]):
 	for slot in resized:
 		var display: InventorySlotDisplay = InventorySlotDisplayScene.instantiate()
 		display.slot = slot
+		display.active = i == selected
 		display.pressed.connect(func(): set_selected(i))
 		_item_list.add_child(display)
 		i+=1
@@ -54,10 +55,11 @@ func _process(delta: float) -> void:
 	var i = 0
 	for child in _item_list.get_children():
 		child.active = i == selected
+		if child.active:
+			pass
 		i+=1
 
-const StateInteractor = preload("res://world/state_interactor.gd")
 
 func _on_item_list_item_selected(index: int) -> void:
 	self.selected = selected
-	StateInteractor.set_inventory_select(index)
+	GameState.inventory_select = index
